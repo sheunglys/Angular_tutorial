@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>UserName</th>
+    <th>Email</th>
+    <th>Verified</th>
+    <th></th>
+  </tr>
+  <tbody>
+    <tr *ngFor="let user of userList">
+      <td>{{user.userId}}</td>
+      <td>{{user.userName}}</td>
+      <td>{{user.email}}</td>
+      <!-- <td>{{user.verified}}</td> -->
+      <!-- <td [ngSwitch]="user.verified">
+        <p *ngSwitchCase="1">verified</p>
+        <a *ngSwitchCase="0" href="#">pending</a>
+        <p *ngSwitchDefault class="text-danger">BUG</p>
+      </td> -->
+      <td>
+        <ng-container [ngSwitch]="user.verified">
+          <p *ngSwitchCase="1">已認證</p>
+          <a *ngSwitchCase="0" href="#">前往認證</a>
+          <p *ngSwitchDefault class="text-danger">BUG</p>
+        </ng-container>
+    </td>
+      <td>
+        <button *ngIf="user.verified === 1">edit</button>
+    </td>
+    </tr>
+  </tbody>
+</table>
